@@ -174,7 +174,7 @@ export class InvoiceService {
   constructor() {}
 
   async getInvoices(userId: number) {
-    return await users[0].invoices;
+    return users[0].invoices;
   }
 
   async getInvoicesById(id: number) {

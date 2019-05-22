@@ -18,9 +18,9 @@ export class ShowInvoiceComponent implements OnInit {
 
   async ngOnInit() {
     // @ts-ignore
-    const invoiceId: number = await this.route.snapshot.paramMap.get('invoiceId');
+    const invoiceId: number = this.route.snapshot.paramMap.get('invoiceId');
     // @ts-ignore
-    const userId: number = await this.route.snapshot.paramMap.get('userId');
+    const userId: number = this.route.snapshot.paramMap.get('userId');
     this.invoice = await this.invoiceService.getInvoicesById(invoiceId);
     this.user = await this.invoiceService.getUserById(userId);
     console.log(this.invoice);
