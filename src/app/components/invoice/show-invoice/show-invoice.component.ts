@@ -21,12 +21,14 @@ export class ShowInvoiceComponent implements OnInit {
     const invoiceId: number = await this.route.snapshot.paramMap.get('invoiceId');
     // @ts-ignore
     const userId: number = await this.route.snapshot.paramMap.get('userId');
+    // @ts-ignore
     this.invoice = await this.invoiceService.getInvoicesById(invoiceId);
+    // @ts-ignore
     this.user = await this.invoiceService.getUserById(userId);
     console.log(this.invoice);
   }
 
-  payInvoice(invoiceId: number) {
-    console.log(invoiceId);
+  async payInvoice(invoiceId: number) {
+    await this.invoiceService.payInvoice(invoiceId);
   }
 }
