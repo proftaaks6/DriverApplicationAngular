@@ -5,14 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+import { LoginComponent } from './components/login/login.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [
     {
