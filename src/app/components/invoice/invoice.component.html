@@ -1,0 +1,24 @@
+<div class="container">
+  <br/>
+  <h1>Facturen</h1>
+  <br/>
+  <table class="table" style="width: 100%">
+    <thead>
+    <tr>
+      <th scope="col"> Datum
+      </th>
+      <th scope="col"> Voertuig
+      </th>
+      <th scope="col"> Betaald
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let invoice of invoices" (click)="showInvoice(invoice)">
+      <td>{{invoice.date}}</td>
+      <td>{{invoice.vehicleId}}</td>
+      <td>{{invoice.isPaid? 'Betaald' : 'Niet betaald'}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
