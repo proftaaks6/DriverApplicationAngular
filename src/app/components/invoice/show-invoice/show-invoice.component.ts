@@ -17,14 +17,11 @@ export class ShowInvoiceComponent implements OnInit {
   constructor(private route: ActivatedRoute, private invoiceService: InvoiceService) { }
 
   async ngOnInit() {
-    // @ts-ignore
-    const invoiceId: number = this.route.snapshot.paramMap.get('invoiceId');
-    // @ts-ignore
-    const userId: number = await this.route.snapshot.paramMap.get('userId');
-    // @ts-ignore
+    let invoiceId: number; 
+    this.route.params.subscribe(params => {
+      invoiceId = params.id;
+    });
     this.invoice = await this.invoiceService.getInvoicesById(invoiceId);
-    // @ts-ignore
-    this.user = await this.invoiceService.getUserById(userId);
     console.log(this.invoice);
   }
 

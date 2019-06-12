@@ -12,17 +12,15 @@ import {User} from '../../shared/models/user.model';
 export class InvoiceComponent implements OnInit {
 
   invoices: Invoice[] = [];
-  user: User = null;
 
   constructor(private invoiceService: InvoiceService, private router: Router) { }
 
   async ngOnInit() {
-    // @ts-ignore
-    this.user = await this.invoiceService.getUserById(0);
-    this.invoices = this.user.invoices;
+    this.invoices = await this.invoiceService.getInvoicesForUser();
+    console.log(this.invoices);
   }
 
   showInvoice(invoice: Invoice) {
-    this.router.navigate(['invoice/showinvoice'], {queryParams: {userId: this.user.id, invoiceId: invoice.id}});
+    this.router.navigateByUrl('invoice/showinvoice/' + invoice.id);
   }
 }

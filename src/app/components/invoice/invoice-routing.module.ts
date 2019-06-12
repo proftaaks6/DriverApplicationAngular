@@ -5,7 +5,7 @@ import {ShowInvoiceComponent} from './show-invoice/show-invoice.component';
 
 const routes: Routes = [
   {path: '', component: InvoiceComponent},
-  {path: 'showinvoice', component: ShowInvoiceComponent}
+  {path: 'showinvoice/:id', component: ShowInvoiceComponent}
 ];
 
 @NgModule({
