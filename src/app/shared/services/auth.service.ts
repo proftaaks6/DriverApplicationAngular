@@ -25,7 +25,6 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    console.log(+ password)
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });

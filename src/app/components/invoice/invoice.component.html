@@ -15,12 +15,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let invoice of invoices" (click)="showInvoice(invoice)" [ngClass]="{'unpaid' : !invoice.isPaid}">
+    <tr *ngFor="let invoice of invoices" (click)="showInvoice(invoice)" [ngClass]="{'unpaid' : !invoice.paid}">
       <td>{{invoice.date | date: 'longDate'}}</td>
       <td>&euro; {{invoice.totalPrice | number : '1.2-2' }}</td>
       <td>{{invoice.totalDistance | number}} km</td>
       <td>{{invoice.vehicleChassis}}</td>
-      <td>{{invoice.isPaid? 'Betaald' : 'Niet betaald'}}</td>
+      <td>{{invoice.paid ? 'Betaald' : 'Niet betaald'}}</td>
     </tr>
     </tbody>
   </table>

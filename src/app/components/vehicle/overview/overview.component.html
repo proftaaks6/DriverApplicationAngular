@@ -1,18 +1,20 @@
-<table class="table" style="width: 100%">
-  <thead>
-  <tr>
-    <th scope="col"> Chassis nummer
-    </th>
-    <th scope="col">Van</th>
-    <th scope="col">Tot</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let vehicle of vehicles">
-    <td>{{vehicle.chassisNumber}}</td>
-    <td>{{vehicle.startDate | date: 'longDate'}}</td>
-    <td>{{vehicle.endDate | date: 'longDate'}}</td>
-  </tr>
-  </tbody>
-</table>
-<i class="fas fa-spinner fa-spin" *ngIf="vehicles === null"></i>
+<div class="container">
+  <table class="table" style="width: 100%">
+    <thead>
+    <tr>
+      <th scope="col"> Chassis nummer
+      </th>
+      <th scope="col">Van</th>
+      <th scope="col">Tot</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let vehicle of vehicles">
+      <td>{{vehicle.chassisNumber}}</td>
+      <td>{{vehicle.startDate | date: 'longDate'}}</td>
+      <td>{{vehicle.endDate | date: 'longDate'}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <i class="fas fa-spinner fa-spin" *ngIf="vehicles === null"></i>
+</div>

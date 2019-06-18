@@ -5,12 +5,12 @@
       <table width="100%">
         <h1>Factuur</h1>
         <tr><td>Datum</td><td>{{invoice.date | date:"longDate"}}</td></tr>
-        <tr><td>Prijs</td><td>&euro; {{invoice.totalPrice | number : '1.2-2' }}</td></tr>
-        <tr><td>Afstand</td><td>{{invoice.totalPrice | number }} km</td></tr>
+        <tr><td>Prijs</td><td>&euro;{{invoice.totalPrice | number : '1.2-2' }}</td></tr>
+        <tr><td>Afstand</td><td>{{invoice.totalDistance | number }} km</td></tr>
         <tr><td></td></tr>
       </table>
-      <button type="button" class="btn btn-primary" (click)="pay()" *ngIf="!invoice.isPaid">Pay</button>
-      <b *ngIf="invoice.isPaid">Factuur is voldaan</b>
+      <button type="button" class="btn btn-primary" (click)="pay()" *ngIf="!invoice.paid">Pay</button>
+      <b style="color: green" *ngIf="invoice.paid">Factuur is voldaan</b>
     </div>
     <div class="col-md-6">
       <agm-map *ngIf="paths" [latitude]="lat" [longitude]="long" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false">
@@ -34,9 +34,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let row of invoice.priceRowList">
-      <td>{{row.regionId}}</td>
-      <td>&euro; {{row.price| number : '1.2-2'}}</td>
+    <tr *ngFor="let row of invoice.priceRowList; let i = index">
+      <td>{{i+1}}</td>
+      <td>&euro;{{row.price| number : '1.2-2'}}</td>
       <td>{{row.distance | number}} km</td>
     </tr>
     </tbody>

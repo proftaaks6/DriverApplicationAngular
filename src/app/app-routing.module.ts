@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'invoice',
     loadChildren: './components/invoice/invoice.module#InvoiceModule',
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'vehicle',

@@ -11,7 +11,7 @@ export class VehicleService {
   constructor(private http: HttpClient) {}
 
   async getAllVehicles() : Promise<Vehicle[]> {
-    return this.http.get<Vehicle[]>("http://www.json-generator.com/api/json/get/cqFxKBkErS?indent=2").toPromise();
+    return this.http.get<Vehicle[]>(environment.driverApplicationUrl + `me/vehicles`).toPromise();
   }
 
 }

@@ -19,18 +19,15 @@ export class ShowInvoiceComponent implements OnInit {
 
   async ngOnInit() {
     // @ts-ignore
-    const invoiceId: number = parseInt(this.route.snapshot.paramMap.get('invoiceId'));
-    // @ts-ignore
-    const userId: number = await this.route.snapshot.paramMap.get('userId');
-    // @ts-ignore
-    this.invoice = await this.invoiceService.getInvoice(invoiceId);
-    this.paths = ([].concat(...this.invoice.priceRowList.map(x=>x.locationPoints)));
-    console.log(this.paths);
-  }
+    this.route.params.subscribe(async x => {
+      const invoiceId = x.id;
+      this.invoice = await this.invoiceService.getInvoice(invoiceId);
+      this.invoice.date = this.invoice.date.substring(0, this.invoice.date.length - 5);
+      this.paths = ([].concat(...this.invoice.priceRowList.map(x=>x.locationPoints)));
+      this.ngOnChanges();
 
-
-  async payInvoice(invoiceId: number) {
-    await this.invoiceService.payInvoice(invoiceId);
+      console.log(this.invoice);
+    });
   }
 
   paths: Array<LocationPoint>;
@@ -42,7 +39,6 @@ export class ShowInvoiceComponent implements OnInit {
   async ngOnChanges() {
     let minLat, minLong, maxLat, maxLong;
     let didFirst = false;
-
 
     if (this.paths.length > 0) {
       this.paths.forEach(point => {
@@ -75,7 +71,7 @@ export class ShowInvoiceComponent implements OnInit {
 
 
   async pay() {
-    await this.invoiceService.payInvoice(parseInt(this.route.snapshot.paramMap.get('invoiceId')));
-    await this.ngOnInit();
+    await this.invoiceService.payInvoice(this.invoice.id);
+    window.location.reload();
   }
 }

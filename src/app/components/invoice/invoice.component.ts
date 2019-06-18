@@ -12,17 +12,17 @@ import {User} from '../../shared/models/user.model';
 export class InvoiceComponent implements OnInit {
 
   invoices: Invoice[] = null;
-  user: User = null;
 
   constructor(private invoiceService: InvoiceService, private router: Router) { }
 
   async ngOnInit() {
-    // @ts-ignore
-    this.user = await this.invoiceService.getUserById(0);
-    this.invoices = await this.invoiceService.getInvoicesByUserId(0, this.user.ownedVehiclesChassis);
+    this.invoices = await this.invoiceService.getInvoicesByUserId();
+    this.invoices.forEach(invoice => {
+      invoice.date = invoice.date.substring(0, invoice.date.length - 5);
+    })
   }
 
   showInvoice(invoice: Invoice) {
-    this.router.navigate(['invoice/showinvoice'], {queryParams: {userId: this.user.id, invoiceId: invoice.id}});
+    this.router.navigateByUrl(`invoice/showinvoice/${invoice.id}`);
   }
 }

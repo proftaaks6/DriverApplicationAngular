@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   async getMe() : Promise<User> {
-    return this.http.get<User>("http://www.json-generator.com/api/json/get/cpWrMwtWqa?indent=2").toPromise();
+    return this.http.get<User>(environment.driverApplicationUrl + `me`).toPromise();
   }
 
 }

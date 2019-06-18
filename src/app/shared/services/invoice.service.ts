@@ -10,22 +10,14 @@ export class InvoiceService {
   constructor(private http: HttpClient) {}
 
   async getInvoice(invoiceId: number) : Promise<Invoice> {
-    return this.http.get<Invoice>("http://www.json-generator.com/api/json/get/bPYNWOnEHS?indent=2").toPromise();
+    return this.http.get<Invoice>(environment.driverApplicationUrl + `me/invoices/${invoiceId}`).toPromise();
   }
 
-  async getInvoicesByUserId(id: number, chassis: string[]) : Promise<Invoice[]>{
-    ///user/{userId}/vehicles/{vehicleIds}
-
-    return this.http.get<Invoice[]>("http://www.json-generator.com/api/json/get/cefQNqrUya?indent=2").toPromise();
-    //return await this.http.get(environment.invoiceSystemUrl + 'user/' + id +'/vehicles'/chassis.join(",")).toPromise();
+  async getInvoicesByUserId() : Promise<Invoice[]>{
+    return this.http.get<Invoice[]>(environment.driverApplicationUrl + `me/invoices`).toPromise();
   }
 
-  async getUserById(id: number) : Promise<User> {
-    return this.http.get<User>("http://www.json-generator.com/api/json/get/cfpyOvEHeG?indent=2").toPromise();
-    //return this.http.get(environment.userSystemUrl + 'users/' + id).toPromise();
-  }
-
-  async payInvoice(invoiceid: number){
-    return this.http.get(environment.invoiceSystemUrl + 'markAsPaid/' + invoiceid).toPromise();
+  async payInvoice(invoiceId: number){
+    return this.http.post(environment.driverApplicationUrl + `me/invoices/${invoiceId}/pay`, {}).toPromise();
   }
 }

@@ -29,14 +29,13 @@ import { UserComponent } from './components/user/user.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  /*
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     }
-  ], */
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,6 +15,10 @@ export class OverviewComponent implements OnInit {
 
   async ngOnInit() {
     this.vehicles = await this.vehicleService.getAllVehicles();
+    this.vehicles.forEach(vehicle => {
+      vehicle.startDate = vehicle.startDate.substring(0, vehicle.startDate.length - 5);
+      vehicle.endDate = vehicle.endDate.substring(0, vehicle.endDate.length - 5);
+    })
   }
 
 }

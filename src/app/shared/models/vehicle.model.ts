@@ -1,9 +1,9 @@
 import {Invoice} from './invoice.model';
 
 export class Vehicle {
-  chassisNumber: String;
+  chassisNumber: string;
 
-  startDate : Date;
+  startDate : string;
 
-  endDate : Date;
+  endDate : string;
 }
