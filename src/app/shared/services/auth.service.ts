@@ -34,7 +34,7 @@ export class AuthenticationService {
     body.set('username', username);
     body.set('password', password);
 
-    return this.http.post<any>(environment.driverApplicationUrl + '/auth/login',
+    return this.http.post<any>(environment.driverApplicationUrl + 'auth/login',
       body.toString(), {
         headers,
         observe: 'response'
