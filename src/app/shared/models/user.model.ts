@@ -5,6 +5,6 @@ export class User {
   name: string;
   address: string;
   residence: string;
-  invoices: Invoice[];
+  ownedVehiclesChassis: string[];
   email: string;
 }

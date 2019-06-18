@@ -11,7 +11,7 @@ import {User} from '../../shared/models/user.model';
 })
 export class InvoiceComponent implements OnInit {
 
-  invoices: Invoice[] = [];
+  invoices: Invoice[] = null;
   user: User = null;
 
   constructor(private invoiceService: InvoiceService, private router: Router) { }
@@ -19,7 +19,7 @@ export class InvoiceComponent implements OnInit {
   async ngOnInit() {
     // @ts-ignore
     this.user = await this.invoiceService.getUserById(0);
-    this.invoices = this.user.invoices;
+    this.invoices = await this.invoiceService.getInvoicesByUserId(0, this.user.ownedVehiclesChassis);
   }
 
   showInvoice(invoice: Invoice) {

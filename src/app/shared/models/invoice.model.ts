@@ -1,8 +1,11 @@
+import {PriceRowList} from './priceRowList.model';
+
 export class Invoice {
   id: number;
-  vehicleId: number;
-  totalDistance: number;
-  totalPrice: number;
+  date: Date;
   isPaid: boolean;
-  date: string;
+  totalPrice: number;
+  totalDistance: number;
+  vehicleChassis: string;
+  priceRowList: PriceRowList[];
 }

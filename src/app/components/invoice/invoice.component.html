@@ -7,18 +7,23 @@
     <tr>
       <th scope="col"> Datum
       </th>
-      <th scope="col"> Voertuig
-      </th>
+      <th scope="col">Prijs</th>
+      <th scope="col">Afstand</th>
+      <th scope="col">Voertuig</th>
       <th scope="col"> Betaald
       </th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let invoice of invoices" (click)="showInvoice(invoice)">
-      <td>{{invoice.date}}</td>
-      <td>{{invoice.vehicleId}}</td>
+    <tr *ngFor="let invoice of invoices" (click)="showInvoice(invoice)" [ngClass]="{'unpaid' : !invoice.isPaid}">
+      <td>{{invoice.date | date: 'longDate'}}</td>
+      <td>&euro; {{invoice.totalPrice | number : '1.2-2' }}</td>
+      <td>{{invoice.totalDistance | number}} km</td>
+      <td>{{invoice.vehicleChassis}}</td>
       <td>{{invoice.isPaid? 'Betaald' : 'Niet betaald'}}</td>
     </tr>
     </tbody>
   </table>
+
+  <i class="fas fa-spinner fa-spin" *ngIf="invoices === null"></i>
 </div>

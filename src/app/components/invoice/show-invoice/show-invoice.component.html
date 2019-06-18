@@ -1,63 +1,44 @@
 <br/>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="invoice-title">
-        <h2>Factuur</h2><h3 class="pull-right">{{invoice.id}}</h3>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-xs-6">
-          <address>
-            <strong>Geaddresseerd aan:</strong><br>
-            {{user.name}}<br>
-            {{user.address}}<br>
-            {{user.residence}}
-          </address>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6 text-right">
-          <address>
-            <strong>Factuur datum</strong><br>
-            {{invoice.date}}<br><br>
-          </address>
-        </div>
-      </div>
+<div class="container" *ngIf="invoice">
+  <div id="top" class="row">
+    <div class="col-md-6">
+      <table width="100%">
+        <h1>Factuur</h1>
+        <tr><td>Datum</td><td>{{invoice.date | date:"longDate"}}</td></tr>
+        <tr><td>Prijs</td><td>&euro; {{invoice.totalPrice | number : '1.2-2' }}</td></tr>
+        <tr><td>Afstand</td><td>{{invoice.totalPrice | number }} km</td></tr>
+        <tr><td></td></tr>
+      </table>
+      <button type="button" class="btn btn-primary" (click)="pay()" *ngIf="!invoice.isPaid">Pay</button>
+      <b *ngIf="invoice.isPaid">Factuur is voldaan</b>
+    </div>
+    <div class="col-md-6">
+      <agm-map *ngIf="paths" [latitude]="lat" [longitude]="long" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false">
+        <agm-polyline [strokeColor]="'red'">
+          <agm-polyline-point *ngFor="let point of paths" [latitude]="point.longitude" [longitude]="point.latitude">
+          </agm-polyline-point>
+        </agm-polyline>
+      </agm-map>
+
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><strong>Factuur gegevens</strong></h3>
-        </div>
-        <div class="panel-body">
-          <div class="table-responsive">
-            <table class="table table-condensed">
-              <thead>
-              <tr>
-                <td><strong>Item</strong></td>
-                <td class="text-center"><strong>Totaal prijs</strong></td>
-                <td class="text-center"><strong>Totale afstand</strong></td>
-              </tr>
-              </thead>
-              <tbody>
-              <!-- foreach ($order->lineItems as $line) or some such thing here -->
-              <tr>
-                <td>{{invoice.id}}</td>
-                <td class="text-center">{{invoice.totalPrice}}</td>
-                <td class="text-center">{{invoice.totalDistance}}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <p *ngIf="invoice.isPaid">Factuur is betaald</p>
-      <input type="submit" *ngIf="!invoice.isPaid" value="Betaal" (click)="payInvoice(invoice.id)">
-    </div>
-  </div>
 
+  <br />
+  <table class="table" style="width: 100%" *ngIf="invoice && invoice.priceRowList">
+    <thead>
+    <tr>
+      <th scope="col">Regio</th>
+      <th scope="col">Prijs</th>
+      <th scope="col">Afstand</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of invoice.priceRowList">
+      <td>{{row.regionId}}</td>
+      <td>&euro; {{row.price| number : '1.2-2'}}</td>
+      <td>{{row.distance | number}} km</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

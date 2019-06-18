@@ -1,0 +1,32 @@
+div{
+  display: inline-block;
+  width: 230px;
+  height: 140px;
+  border: 1px black solid;
+  position: relative;
+  cursor: pointer;
+  h1{
+    color: white;
+    width: 100%;
+    bottom: 0;
+    background-color: rgba(0,0,0,.7);
+    position: absolute;
+    margin: 0;
+    font-size: 20px;
+    text-align: right;
+    padding: 2px 10px 2px 0;
+    .text{
+      padding-right: 10px;
+    }
+    .fas{
+      transition: all 0.2s ease-in-out;
+    }
+  }
+  h2{
+    padding: 10px;
+  }
+}
+div:hover .fas{
+  padding-left: 3px;
+  margin-right: -5px ;
+}

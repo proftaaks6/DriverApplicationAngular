@@ -6,12 +6,12 @@ import {Invoice} from '../models/invoice.model';
 import {Vehicle} from '../models/vehicle.model';
 
 @Injectable({providedIn: 'root'})
-export class VehicleService {
+export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  async getAllVehicles() : Promise<Vehicle[]> {
-    return this.http.get<Vehicle[]>("http://www.json-generator.com/api/json/get/cqFxKBkErS?indent=2").toPromise();
+  async getMe() : Promise<User> {
+    return this.http.get<User>("http://www.json-generator.com/api/json/get/cpWrMwtWqa?indent=2").toPromise();
   }
 
 }

@@ -5,7 +5,7 @@ import {InvoiceRoutingModule} from './invoice-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ShowInvoiceComponent } from './show-invoice/show-invoice.component';
-
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     InvoiceComponent,
@@ -16,7 +16,10 @@ import { ShowInvoiceComponent } from './show-invoice/show-invoice.component';
     InvoiceRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCtRlXHmPwNJ0hHyd2EFNldqWu1Q9y8aHk'
+    })
   ]
 })
 export class InvoiceModule { }
